@@ -24,20 +24,19 @@
 
 	#print("[1] Store Grade on Existing Student")
 	    #storeGrade()
-	    #ASK IF FOR Discussions Forum or Final Project
-	    #IF for Discussion Forum or Final Proj
+	    #ASK IF FOR student ID
 	    #ask for DF Report Grade:
 	    #ask for Project Grade
 	    #ask for Final Exam Grade
 
     #print("[2] View Grade of Students for each Assesment")
 	    #viewGrades()
-	    #ASK IF FOR Discussions Forum or Final Project
+	    #ASK IF FOR DF, proj or Final Project
 	    #view all student grades in Discussions Forum
 
     #print("[3] View Students with below Average Grade for each Assesment")
 	    #viewBelowAveGrades()
-	    #ASK IF FOR Discussions Forum or Final Project
+	    #ASK IF FOR DF, proj or Final Project
 	    #view all student grades in Discussions Forum
 
     #print ("[4] View Report of Students Total Grade for the Semester")
@@ -48,7 +47,6 @@
 	    #Project 30%
 	    #Final Exam 50%
 
-	    #on all assesments
 
     #print("[5] View Report of Students with below Average Grade for the Semester")
 	    #viewSemesterLowGrades()
@@ -56,6 +54,8 @@
 """
 
 import turtle
+import os
+
 
 #menu
 class Menu:
@@ -68,8 +68,9 @@ class Menu:
 		'View Report of Students Total Grade for the Semester',
 		'View Report of Students with below Average Grade for the Semester',
 		'Exit',
-		'Discussion Forum',
-		'Final Project'
+		'Discussion Forum Report',
+		'Project'
+		'Final Exam'
 		'Go Back',
 		'Exit',
 		'Add another User'
@@ -96,29 +97,111 @@ class Menu:
 		return formatted_menu
 
 
+
 def validateInput(max_entry, user_entry):
 	try:
 		user_entry_int = int(user_entry)	
 	except Exception as e:
 		return False
 	else:
-		if user_entry_int <= max_entry:
+		if user_entry_int < max_entry:
 			return True
 		else:
 			return False
 
+def tryParseInt(x):
+	try:
+		user_entry_int = int(x)	
+	except Exception as e:
+		pass
+	finally:
+		return user_entry_int
+
+def isValidGrade(x):
+	try:
+		user_entry_int = int(x)	
+	except Exception as e:
+		return False
+	else:
+		if user_entry_int <= 100:
+			return True
+		else:
+			return False
+
+
+#GLOBAL STUDENT OBJECT
+students = []
+
 #Verify menu objects
 menu_obj = Menu()
-root_menu = menu_obj.createMenu(range(0,7))
+current_menu = menu_obj.createMenu(range(0,7))
 menu_functions = ['showAddStudent()','updateStudentGrades()',
-				  'viewLowGrades()','viewTotalGrades()','viewTotalLowGrades()','exitMenu()']
+				  'viewStudentGrade()','viewLowGrades()','viewTotalGrades()',
+				  'viewTotalLowGrades()','exitMenu()']
+
+def clrscr():
+	print('\033[H\033[J') #clear screen
+	windows_clear_screen = os.system("clear") 
+	linux_clear_screen = os.system('cls') # on windows
+	print('\n\n==================================================================')	
 
 def showRootMenu():
-	print('\033[H\033[J') #clear screen
-	print('\n\n==================================================================')
+	clrscr()
 	print('\n Welcome! What do you want to do? Please Input Number only!\n');
-	print(menu_obj.formatMenu(root_menu))
+	print(menu_obj.formatMenu(current_menu))
 
+def showAddStudent():
+	name = ""
+	while name == "":
+		clrscr()
+		print('\n PLEASE ENTER A VALID Student Name\n');
+		choice = input("Your Answer: ")
+		name = choice
+	valid_grade = False
+	while valid_grade != True:
+		clrscr()
+		print('\n PLEASE ENTER A VALID DF REPORT GRADE MAX 100\n');
+		choice = input("Your Answer: ")
+		valid_grade = isValidGrade(choice)
+	df_grade = valid_grade
+	valid_grade = False
+	while valid_grade != True:
+		clrscr()
+		print('\n PLEASE ENTER A VALID Project GRADE MAX 100\n');
+		choice = input("Your Answer: ")
+		valid_grade = isValidGrade(choice)
+	proj_grade = valid_grade
+	valid_grade = False
+	while valid_grade != True:
+		clrscr()
+		print('\n PLEASE ENTER A VALID Final Exam GRADE MAX 100\n');
+		choice = input("Your Answer: ")
+		valid_grade = isValidGrade(choice)
+	final_exam_grade = valid_grade
+
+	clrscr()
+	students.append([name, df_grade, proj_grade, final_exam_grade])
+	print('\n Student SUCCESSFULLY ADDED PRESS ENTER TO GO BACK\n');
+	try:
+		input("Press enter to continue")
+	except SyntaxError:
+		pass
+	showRootMenu()
+
+def updateStudentGrades():
+	clrscr()
+	students = ['asdasd',12,23,34]
+	x = 0
+	for each_student[x] in students:
+		print('[{}] Name: {} DF: {} PROJ: {} FINAL: {}').format(x,each_student[0],each_student[1],each_student[2],each_student[3])
+		x += 1
+
+def viewLowGrades():
+	print("show viewLowGrades form")
+def viewTotalGrades():
+	print("show viewTotalGrades form")
+def viewTotalLowGrades():
+	print("show viewTotalLowGrades form")
 def exitMenu():
 	exit()
 
@@ -132,16 +215,12 @@ def gotoMenu(menu):
 		x+=1
 
 
+end = False
 showRootMenu()
-choice = input('Your Answer: ')
-while validateInput(len(root_menu),choice) != True:
-	showRootMenu()
-	print('Invalid Input please try again\n')
+while end != True:
 	choice = input('Your Answer: ')
-gotoMenu(choice)
-
-
-
-
-#choice = validateInput(max_entry)
-#transporter(choice)
+	while validateInput(len(current_menu),choice) != True:
+		showRootMenu()
+		print('Invalid Input please try again\n')
+		choice = input('Your Answer: ')
+	gotoMenu(tryParseInt(choice))
