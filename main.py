@@ -147,41 +147,41 @@ def clrscr():
 
 def showRootMenu():
 	clrscr()
-	print('\n Welcome! What do you want to do? Please Input Number only!\n');
+	print('\n Welcome! What do you want to do? Please Input Number only!\n')
 	print(menu_obj.formatMenu(current_menu))
 
 def showAddStudent():
 	name = ""
 	while name == "":
 		clrscr()
-		print('\n PLEASE ENTER A VALID Student Name\n');
+		print('\n PLEASE ENTER A VALID Student Name\n')
 		choice = input("Your Answer: ")
 		name = choice
 	valid_grade = False
 	while valid_grade != True:
 		clrscr()
-		print('\n PLEASE ENTER A VALID DF REPORT GRADE MAX 100\n');
+		print('\n PLEASE ENTER A VALID DF REPORT GRADE MAX 100\n')
 		choice = input("Your Answer: ")
 		valid_grade = isValidGrade(choice)
 	df_grade = valid_grade
 	valid_grade = False
 	while valid_grade != True:
 		clrscr()
-		print('\n PLEASE ENTER A VALID Project GRADE MAX 100\n');
+		print('\n PLEASE ENTER A VALID Project GRADE MAX 100\n')
 		choice = input("Your Answer: ")
 		valid_grade = isValidGrade(choice)
 	proj_grade = valid_grade
 	valid_grade = False
 	while valid_grade != True:
 		clrscr()
-		print('\n PLEASE ENTER A VALID Final Exam GRADE MAX 100\n');
+		print('\n PLEASE ENTER A VALID Final Exam GRADE MAX 100\n')
 		choice = input("Your Answer: ")
 		valid_grade = isValidGrade(choice)
 	final_exam_grade = valid_grade
 
 	clrscr()
 	students.append([name, df_grade, proj_grade, final_exam_grade])
-	print('\n Student SUCCESSFULLY ADDED PRESS ENTER TO GO BACK\n');
+	print('\n Student SUCCESSFULLY ADDED PRESS ENTER TO GO BACK\n')
 	try:
 		input("Press enter to continue")
 	except SyntaxError:
@@ -190,10 +190,13 @@ def showAddStudent():
 
 def updateStudentGrades():
 	clrscr()
-	students = ['asdasd',12,23,34]
+	print("STUDENTS LIST. PLEASE SELECT NUMBER FROM STUDENTS BELOW")
+	
 	x = 0
+	each_student = students
 	for each_student[x] in students:
-		print('[{}] Name: {} DF: {} PROJ: {} FINAL: {}').format(x,each_student[0],each_student[1],each_student[2],each_student[3])
+		print(each_student[x])
+		print('[{}] {} DF: {} PROJ: {} FINAL: {}'.format(x,each_student[x][0],each_student[x][1],each_student[x][2],each_student[x][3]))
 		x += 1
 
 def viewLowGrades():
