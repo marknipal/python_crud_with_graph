@@ -1,0 +1,52 @@
+#python vs java notes
+
+#python is not designed to have same a classes with same name
+#python does not require interfaces it uses multiple inheritance
+
+
+#python notes
+#when referencing a class to an object you must use self on the method
+#to use variables on the same class add self
+
+
+
+"""psuedocode of requirements
+	print("[0] Add Student")
+	    #createStudent()
+	    #ASK Student Name
+	    #Ask If User want to store Grade
+	    #IF YES GOTO storeGrade()
+
+	    #Nice to have
+	    #ask if user wants to insert another
+
+	#print("[1] Store Grade on Existing Student")
+	    #storeGrade()
+	    #ASK IF FOR student ID
+	    #ask for DF Report Grade:
+	    #ask for Project Grade
+	    #ask for Final Exam Grade
+
+    #print("[2] View Grade of Students for each Assesment")
+	    #viewGrades()
+	    #ASK IF FOR DF, proj or Final Project
+	    #view all student grades in Discussions Forum
+
+    #print("[3] View Students with below Average Grade for each Assesment")
+	    #viewBelowAveGrades()
+	    #ASK IF FOR DF, proj or Final Project
+	    #view all student grades in Discussions Forum
+
+    #print ("[4] View Report of Students Total Grade for the Semester")
+	    #viewSemesterGrade()
+	    #view barchart of total grades by totalling:
+
+	    #DF REPORT 20%
+	    #Project 30%
+	    #Final Exam 50%
+
+
+    #print("[5] View Report of Students with below Average Grade for the Semester")
+	    #viewSemesterLowGrades()
+	    #view report of student that are below average for the semester
+"""
